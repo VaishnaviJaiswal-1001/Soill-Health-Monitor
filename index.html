@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Health Monitor - Learn & Grow</title>
+    <link rel="stylesheet" href="try.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🌱</div>
+                    <h1>Soil Health Monitor</h1>
+                </div>
+                <div class="user-controls">
+                    <button id="modeToggle" class="mode-toggle" aria-label="Switch between kid and adult mode">
+                        <span id="modeText">Kid Mode</span>
+                    </button>
+                    <button id="accessibilityBtn" class="accessibility-btn" aria-label="Accessibility options">
+                        <span class="icon">♿</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Accessibility Panel -->
+    <div id="accessibilityPanel" class="accessibility-panel hidden">
+        <div class="panel-content">
+            <h3>Accessibility Options</h3>
+            <div class="accessibility-controls">
+                <label class="control-item">
+                    <input type="checkbox" id="highContrast">
+                    <span>High Contrast Mode</span>
+                </label>
+                <label class="control-item">
+                    <input type="checkbox" id="largeText">
+                    <span>Large Text</span>
+                </label>
+                <label class="control-item">
+                    <input type="checkbox" id="reducedMotion">
+                    <span>Reduce Animations</span>
+                </label>
+            </div>
+            <button id="closeAccessibility" class="close-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-content">
+                    <h2 id="welcomeTitle">Welcome, Young Gardener! 🌟</h2>
+                    <p id="welcomeText">Let's explore the amazing world beneath our feet and learn how to make soil healthy and happy!</p>
+                </div>
+                <div class="progress-overview">
+                    <div class="progress-card">
+                        <div class="progress-icon">📊</div>
+                        <div class="progress-info">
+                            <h3>Your Progress</h3>
+                            <div class="progress-bar">
+                                <div id="overallProgress" class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span id="progressText">0% Complete</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navigation Tabs -->
+            <nav class="nav-tabs">
+                <button class="tab-btn active" data-tab="testing" aria-selected="true">
+                    <span class="tab-icon">🔬</span>
+                    <span class="tab-text">Soil Testing</span>
+                </button>
+                <button class="tab-btn" data-tab="education" aria-selected="false">
+                    <span class="tab-icon">📚</span>
+                    <span class="tab-text">Learn</span>
+                </button>
+                <button class="tab-btn" data-tab="recommendations" aria-selected="false">
+                    <span class="tab-icon">🌿</span>
+                    <span class="tab-text">Plant Guide</span>
+                </button>
+                <button class="tab-btn" data-tab="journal" aria-selected="false">
+                    <span class="tab-icon">📸</span>
+                    <span class="tab-text">My Garden</span>
+                </button>
+            </nav>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Soil Testing Tab -->
+                <div id="testing" class="tab-panel active">
+                    <div class="panel-header">
+                        <h2>Soil Health Checklist</h2>
+                        <p id="testingDescription">Follow these simple steps to check your soil's health!</p>
+                    </div>
+
+                    <div class="testing-cards">
+                        <div class="test-card" data-test="color">
+                            <div class="test-header">
+                                <div class="test-icon">🎨</div>
+                                <h3>Soil Color</h3>
+                            </div>
+                            <div class="test-content">
+                                <p>Look at your soil color and choose the closest match:</p>
+                                <div class="color-options">
+                                    <button class="color-btn" data-color="dark-brown" style="background-color: #3c2414;">Dark Brown</button>
+                                    <button class="color-btn" data-color="medium-brown" style="background-color: #8b4513;">Medium Brown</button>
+                                    <button class="color-btn" data-color="light-brown" style="background-color: #daa520;">Light Brown</button>
+                                    <button class="color-btn" data-color="gray" style="background-color: #808080;">Gray</button>
+                                    <button class="color-btn" data-color="red" style="background-color: #cd853f;">Reddish</button>
+                                </div>
+                                <div class="test-result hidden" id="colorResult"></div>
+                            </div>
+                        </div>
+
+                        <div class="test-card" data-test="texture">
+                            <div class="test-header">
+                                <div class="test-icon">✋</div>
+                                <h3>Soil Texture</h3>
+                            </div>
+                            <div class="test-content">
+                                <p>Grab a handful of moist soil and squeeze it:</p>
+                                <div class="texture-options">
+                                    <button class="texture-btn" data-texture="clay">Forms a tight ball (Clay)</button>
+                                    <button class="texture-btn" data-texture="loam">Forms a loose ball (Loam)</button>
+                                    <button class="texture-btn" data-texture="sand">Falls apart easily (Sandy)</button>
+                                </div>
+                                <div class="test-result hidden" id="textureResult"></div>
+                            </div>
+                        </div>
+
+                        <div class="test-card" data-test="drainage">
+                            <div class="test-header">
+                                <div class="test-icon">💧</div>
+                                <h3>Water Drainage</h3>
+                            </div>
+                            <div class="test-content">
+                                <p>Pour a cup of water on the soil and observe:</p>
+                                <div class="drainage-options">
+                                    <button class="drainage-btn" data-drainage="fast">Water disappears quickly (5-10 minutes)</button>
+                                    <button class="drainage-btn" data-drainage="moderate">Water soaks in slowly (30-60 minutes)</button>
+                                    <button class="drainage-btn" data-drainage="slow">Water stays on surface (2+ hours)</button>
+                                </div>
+                                <div class="test-result hidden" id="drainageResult"></div>
+                            </div>
+                        </div>
+
+                        <div class="test-card" data-test="life">
+                            <div class="test-header">
+                                <div class="test-icon">🐛</div>
+                                <h3>Signs of Life</h3>
+                            </div>
+                            <div class="test-content">
+                                <p>Look for living creatures in your soil:</p>
+                                <div class="life-checklist">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="life" value="worms">
+                                        <span class="checkmark"></span>
+                                        <span>Earthworms</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="life" value="insects">
+                                        <span class="checkmark"></span>
+                                        <span>Small insects or bugs</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="life" value="roots">
+                                        <span class="checkmark"></span>
+                                        <span>Plant roots</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="life" value="organic">
+                                        <span class="checkmark"></span>
+                                        <span>Decomposing leaves or organic matter</span>
+                                    </label>
+                                </div>
+                                <button id="checkLifeBtn" class="check-btn">Check My Results</button>
+                                <div class="test-result hidden" id="lifeResult"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-summary hidden" id="resultsSummary">
+                        <div class="summary-header">
+                            <h3>Your Soil Health Report 📋</h3>
+                        </div>
+                        <div class="summary-content">
+                            <div class="health-score">
+                                <div class="score-circle">
+                                    <span id="healthScore">0</span>
+                                    <small>out of 100</small>
+                                </div>
+                                <div class="score-label" id="scoreLabel">Getting Started</div>
+                            </div>
+                            <div class="recommendations" id="recommendationsContainer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Tab -->
+                <div id="education" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Learn About Soil</h2>
+                        <p>Discover the amazing world of soil and why it's so important!</p>
+                    </div>
+
+                    <div class="education-grid">
+                        <div class="edu-card" data-topic="basics">
+                            <div class="edu-icon">🌍</div>
+                            <h3>What is Soil?</h3>
+                            <p>Learn about the amazing mixture that supports all plant life</p>
+                            <button class="learn-btn">Explore</button>
+                        </div>
+
+                        <div class="edu-card" data-topic="importance">
+                            <div class="edu-icon">⚡</div>
+                            <h3>Why Soil Matters</h3>
+                            <p>Discover how healthy soil helps plants, animals, and people</p>
+                            <button class="learn-btn">Explore</button>
+                        </div>
+
+                        <div class="edu-card" data-topic="improvement">
+                            <div class="edu-icon">🔧</div>
+                            <h3>Improving Soil</h3>
+                            <p>Simple ways to make your soil healthier and more productive</p>
+                            <button class="learn-btn">Explore</button>
+                        </div>
+
+                        <div class="edu-card" data-topic="composting">
+                            <div class="edu-icon">♻</div>
+                            <h3>Composting Basics</h3>
+                            <p>Turn kitchen scraps into garden gold with composting</p>
+                            <button class="learn-btn">Explore</button>
+                        </div>
+                    </div>
+
+                    <div class="education-content hidden" id="educationContent">
+                        <button class="back-btn" id="backToTopics">← Back to Topics</button>
+                        <div class="content-area" id="contentArea"></div>
+                    </div>
+                </div>
+
+                <!-- Plant Recommendations Tab -->
+                <div id="recommendations" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Plant Recommendations</h2>
+                        <p>Find the perfect plants for your soil conditions!</p>
+                    </div>
+
+                    <div class="recommendations-content">
+                        <div class="soil-input">
+                            <h3>Your Soil Type:</h3>
+                            <div class="input-group">
+                                <select id="soilTypeSelect">
+                                    <option value="">Select your soil type...</option>
+                                    <option value="clay">Clay Soil</option>
+                                    <option value="sandy">Sandy Soil</option>
+                                    <option value="loam">Loamy Soil</option>
+                                    <option value="poor">Poor/Compacted Soil</option>
+                                </select>
+                                <button id="getRecommendations" class="get-recommendations-btn">Get Plant Ideas!</button>
+                            </div>
+                        </div>
+
+                        <div class="plant-results hidden" id="plantResults">
+                            <h3>Perfect Plants for Your Soil 🌱</h3>
+                            <div class="plants-grid" id="plantsGrid"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Garden Journal Tab -->
+                <div id="journal" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>My Garden Journal</h2>
+                        <p>Track your soil improvement journey with photos and notes!</p>
+                    </div>
+
+                    <div class="journal-content">
+                        <div class="add-entry">
+                            <h3>Add New Entry</h3>
+                            <div class="entry-form">
+                                <input type="text" id="entryTitle" placeholder="What did you do today?" maxlength="50">
+                                <textarea id="entryNotes" placeholder="Tell us about your soil work..." rows="3" maxlength="200"></textarea>
+                                <div class="photo-upload">
+                                    <input type="file" id="photoInput" accept="image/*" hidden>
+                                    <button id="addPhotoBtn" class="photo-btn">📸 Add Photo</button>
+                                    <div id="photoPreview" class="photo-preview hidden"></div>
+                                </div>
+                                <button id="saveEntry" class="save-entry-btn">Save Entry</button>
+                            </div>
+                        </div>
+
+                        <div class="journal-entries" id="journalEntries">
+                            <h3>Your Garden Story</h3>
+                            <div class="entries-container" id="entriesContainer">
+                                <div class="no-entries">
+                                    <div class="no-entries-icon">📔</div>
+                                    <p>Start your garden journal by adding your first entry!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Achievement Modal -->
+    <div id="achievementModal" class="modal hidden">
+        <div class="modal-content achievement-content">
+            <div class="achievement-header">
+                <div class="achievement-badge" id="achievementBadge">🏆</div>
+                <h3 id="achievementTitle">Achievement Unlocked!</h3>
+            </div>
+            <p id="achievementDescription">Great job learning about soil health!</p>
+            <button id="closeAchievement" class="modal-close-btn">Awesome!</button>
+        </div>
+    </div>
+
+    <script src="/try.js"></script>
+</body>
+</html>
